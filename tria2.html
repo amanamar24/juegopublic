@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,6 +21,7 @@
     </style>
     <title>tu aventura</title>
 </head>
+
 <body>
     <main>
         <header>
@@ -27,38 +29,41 @@
         </header>
         <section class="text"> text</section>
         <footer>
-           
-                <ul>
-                    <li><button onclick="ferSi()">si</button></li>
-                    <li><button onclick="ferNo()">no</button></li>
-     
-                </ul>
-                
-           
-            
+
+            <ul>
+                <li><button onclick="ferSi()">si</button></li>
+                <li><button onclick="ferNo()">no</button></li>
+
+            </ul>
+
+
+
         </footer>
-   
+
 
     </main>
     <script>
+        let animalFlag = "";
         let historia = [
-            {text:'bienvenido'},
-            {text:'continuamos'},
-            {text:'volver a jugar'},
-            {text:'escoge un animal'},
+            { text: 'bienvenido' },
+            { text: 'continuamos' },
+            { text: 'volver a jugar' },
+            { text: 'escoge un animal' },
 
         ]
         let animals = [
-            {text:'gato'},
-            {text:'perro'},
-            {text:'raton'},
+            { text: 'gato' },
+            { text: 'perro' },
+            { text: 'raton' },
         ]
-        let msgAnimal={"gato":"mensage gato","perro":"mensage perro","raton":"mensage raton"}
-        let msgAnimalJs=[
-            {gato:'mensage gato'},
-            {perro:'mensage perro'},
-            {raton:'mensage raton'},
-        ]
+        let msgAnimal = { "gato": "mensage gato", "perro": "mensage perro", "raton": "mensage raton" }
+        // let msgAnimalJs={
+        //     gato:'mensage gato'},
+        //     {perro:'mensage perro'},
+        //     {raton:'mensage raton'},
+
+        // }
+        //alert(msgAnimal["gato"]);         
         //const obj = JSON.parse(msgAnimalJs);
         let pagina = 0;
         let text = document.querySelector('.text');
@@ -66,41 +71,71 @@
 
         function ferSi() {
             pagina = pagina + 1;
-            if (pagina == 4){
-               // alert("imprimir animales");
-                text.innerHTML="";
+            if (pagina == 4) {
+                // alert("imprimir animales");
+                text.innerHTML = "";
                 let cont = 0;
-              
-                while(cont<3){
+
+                while (cont < 3) {
                     let btnElemnt = document.createElement("button");
                     //alert(animals[cont].text);
                     //let msg=animals[cont].text;
-                    btnElemnt.onclick = function(){
-                       //alert(animals[cont].text); 
+                    btnElemnt.onclick = function () {
+                        //alert(animals[cont].text); 
                         //alert(this.innerHTML);
-                        alert(msgAnimal[this.innerHTML]);
+                        //alert(msgAnimal[this.innerHTML]);
+                        text.innerHTML = msgAnimal[this.innerHTML];
+                        //text.innerHTML = "";
+                        animalFlag = this.innerHTML;
                         //alert(msgAnimalJs.this.innerHTML);
                         //alert(obj.this.innerHTML);
                     }
-                    btnElemnt.innerHTML=animals[cont].text;
+                    btnElemnt.innerHTML = animals[cont].text;
                     text.appendChild(btnElemnt);
-                    cont ++;
+                    cont++;
                 }
 
 
             }
-            else{
-                    
+            else {
+
                 text.textContent = historia[pagina].text;
             }
-           
-            
-            
+
+
+
         }
         function ferNo() {
             pagina = pagina - 1;
             text.textContent = historia[pagina].text;
+            if (animalFlag != "") {
+
+                // if(text.firstChild){
+                // let hasChild = document.getElementsByTagName('strong')!= null;
+                // if (hasChild) {
+                //     alert("haschild");
+                //     // console.log("hasChildIN", text.hasChildNodes());
+                //     // de esta forma se que si hay un strong
+                //     // vengo de la vista que no quieres adoptar?
+
+                //     text.innerHTML = "gracia por su feedback";
+
+                // }
+                // else {
+                    text.innerHTML="";
+                    let elemtemporal = document.createElement('strong');
+                    elemtemporal.innerHTML="no quieres adoptar un "+ animalFlag ;
+                    text.appendChild(elemtemporal); 
+                    let elemstr = document.getElementsByTagName('strong');
+                    //alert(elemstr);
+                    console.log(elemstr);
+
+                // }
+
+            }
+            //alert(animalFlag);
         }
     </script>
 </body>
+
 </html>
